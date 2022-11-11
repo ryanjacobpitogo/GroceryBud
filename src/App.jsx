@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Alert from './Alert';
 
 const getLocalStorage = () => {
   let list = localStorage.getItem('list');
@@ -43,11 +44,12 @@ export default function App() {
   return (
     <div className = "container">
       <form className="grocery-form" onSubmit = {handleSubmit}>
+        {alert.status_ && <Alert {...alert} removeAlert = {alertStatus} list = {list}/>}
         <h2>Grocery Bud</h2>
         <div className = "form-controller">
           <input 
-            placeholder = 'e.g. eggs'
-            type = "text" 
+            placeholder = 'e.g. eggs' 
+            type = "text"  
             className = "grocery-input" 
             value = {input}
             onChange = {(e) => setInput(e.target.value)}
